@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diving Logbook | EcoFishID</title>
+    <link rel="stylesheet" href="logbook.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+<header>
+    <nav class="navbar">
+        <div class="logo">EcoFishID</div>
+        <ul class="nav-links">
+            <li><a href="/home.html">Home</a></li>
+            <li><a href="/upload.html">Identify</a></li>
+            <li><a href="/explore.html">Explore</a></li>
+            <li><a href="/guide.html">Guide</a></li>
+            <li><a href="/div.html">Diving Records</a></li>
+            <li><a href="/logbook.html" class="active">Logbook</a></li>
+        </ul>
+    </nav>
+</header>
+<section class="logbook-hero">
+    <h1>Dive Logbook</h1>
+    <p>Your dive history at a glance</p>
+</section>
+<section class="logbook-container">
+    <h2>Past Dives</h2>
+    <div id="logbook-list" class="logbook-grid"></div>
+</section>
+<footer>
+    <p>&copy; 2025 EcoFishID | All Rights Reserved</p>
+</footer>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const logbookList = document.getElementById("logbook-list");
+        let records = JSON.parse(localStorage.getItem("divingRecords")) || [];
+
+        function displayLogbook() {
+            logbookList.innerHTML = "";
+            records.forEach(record => {
+                const logItem = document.createElement("div");
+                logItem.classList.add("log-item");
+                logItem.innerHTML = `
+                    <div class="log-card">
+                        <h3>${record.diveLocation} (${record.diveDate})</h3>
+                        <p><strong>Diver:</strong> ${record.diverName}</p>
+                        <p><strong>Depth:</strong> ${record.diveDepth}m</p>
+                        <p><strong>Water Temperature:</strong> ${record.waterTemp}°C</p>
+                        <p><strong>Visibility:</strong> ${record.visibility}m</p>
+                        <p><strong>Gear Used:</strong> ${record.gearUsed}</p>
+                        <p><strong>Notes:</strong> ${record.diveNotes}</p>
+                    </div>
+                `;
+                logbookList.appendChild(logItem);
+            });
+        }
+        displayLogbook();
+    });
+</script>
+</body>
+</html>
