@@ -1,0 +1,243 @@
+document.addEventListener("DOMContentLoaded", () => {
+    const createPostBtn = document.getElementById("createPostBtn");
+    const forumContainer = document.getElementById("forumContainer");
+
+    // Function to create a new post
+    createPostBtn.addEventListener("click", () => {
+        const postTitle = prompt("Enter post title:");
+        const postAuthor = prompt("Enter your name:");
+
+        if (postTitle && postAuthor) {
+            const postDiv = document.createElement("div");
+            postDiv.classList.add("discussion-post");
+
+            postDiv.innerHTML = `
+                <h3>${postTitle}</h3>
+                <p>Posted by: ${postAuthor}</p>
+                <button class="join-discussion">Join Discussion</button>
+
+                <div class="comment-section" style="display: none;">
+                    <h4>Comments</h4>
+                    <div class="comments-list"></div>
+                    <textarea class="comment-input" placeholder="Add a comment..."></textarea>
+                    <button class="add-comment">Post Comment</button>
+                </div>
+            `;
+
+            forumContainer.prepend(postDiv);
+        }
+    });
+});
+
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    const createPostBtn = document.getElementById("createPostBtn");
+    const forumContainer = document.getElementById("forumContainer");
+
+    createPostBtn.addEventListener("click", function () {
+       // const postTitle = prompt("Enter your discussion title:");
+        if (postTitle) {
+            const postAuthor = "Akshaya"; // You can modify this dynamically if you have user login
+            const newPost = document.createElement("div");
+            newPost.classList.add("discussion-post");
+            newPost.innerHTML = `
+                <h3>${postTitle}</h3>
+                <p>Posted by: ${postAuthor}</p>
+                <button class="join-discussion">Join Discussion</button>
+                <div class="comment-section" style="display: none;">
+                    <h4>Comments</h4>
+                    <div class="comments-list"></div>
+                    <textarea class="comment-input" placeholder="Add a comment..."></textarea>
+                    <button class="add-comment">Post Comment</button>
+                </div>
+            `;
+            forumContainer.prepend(newPost);
+        }
+    });
+
+    // Enable Join Discussion and Comment Posting for All Posts
+    forumContainer.addEventListener("click", function (event) {
+        if (event.target.classList.contains("join-discussion")) {
+            const commentSection = event.target.nextElementSibling;
+            commentSection.style.display = commentSection.style.display === "none" ? "block" : "none";
+        }
+
+        if (event.target.classList.contains("add-comment")) {
+            const commentInput = event.target.previousElementSibling;
+            const commentsList = event.target.parentElement.querySelector(".comments-list");
+
+            if (commentInput.value.trim() !== "") {
+                const newComment = document.createElement("p");
+                newComment.textContent = commentInput.value;
+                commentsList.appendChild(newComment);
+                commentInput.value = ""; // Clear input after posting
+            }
+        }
+    });
+});
+
+
+
+/*
+
+document.querySelectorAll(".join-discussion").forEach(button => {
+    button.addEventListener("click", function () {
+        let postContainer = this.parentElement;
+        let commentSection = postContainer.querySelector(".comment-section");
+
+        // Toggle comment section visibility
+        commentSection.style.display = commentSection.style.display === "none" ? "block" : "none";
+    });
+});
+
+// Handle adding comments
+document.querySelectorAll(".add-comment").forEach(button => {
+    button.addEventListener("click", function () {
+        let postContainer = this.parentElement;
+        let commentInput = postContainer.querySelector(".comment-input");
+        let commentsList = postContainer.querySelector(".comments-list");
+
+        let commentText = commentInput.value.trim();
+        if (commentText !== "") {
+            let newComment = document.createElement("p");
+            newComment.innerHTML = `<strong>You:</strong> ${commentText}`;
+            commentsList.appendChild(newComment);
+            
+            commentInput.value = ""; // Clear input
+        }
+    });
+});
+
+   
+*/
+   
+   
+   
+   
+   
+   
+   
+   
+   // Chatbox Toggle
+    let chatBox = document.getElementById("chatBox");
+    document.getElementById("chatNowBtn").addEventListener("click", function () {
+        chatBox.style.display = "block";
+    });
+    document.getElementById("closeChat").addEventListener("click", function () {
+        chatBox.style.display = "none";
+    });
+
+    // Chatbot AI Response
+    document.getElementById("sendChat").addEventListener("click", function () {
+        let chatBody = document.getElementById("chatBody");
+        let chatInput = document.getElementById("chatInput");
+        let userMessage = chatInput.value.trim();
+
+        if (userMessage !== "") {
+            let userMsgHTML = `<p><strong>You:</strong> ${userMessage}</p>`;
+            chatBody.innerHTML += userMsgHTML;
+            
+            let botResponse = getChatbotResponse(userMessage);
+            let botMsgHTML = `<p><strong>Bot:</strong> ${botResponse}</p>`;
+            
+            setTimeout(() => {
+                chatBody.innerHTML += botMsgHTML;
+                chatBody.scrollTop = chatBody.scrollHeight;
+            }, 1000);
+
+            chatInput.value = ""; // Clear input
+        }
+    });
+
+    // AI Chatbot Response Function
+    function getChatbotResponse(question) {
+        question = question.toLowerCase();
+
+        const responses = {
+           "fishing spots": "The best fishing spots depend on your location. Try using the 'Explore' section to find recommendations near you!",
+    "sustainable fishing": "Sustainable fishing helps protect marine life. Use barbless hooks, avoid overfishing, and follow local regulations.",
+    "identify fish": "You can upload a picture of the fish in our 'Identify' section, and our AI will recognize the species.",
+    "diving records": "You can log your diving records in the 'Diving Records' section of our website.",
+    "logbook": "The logbook feature lets you track your past fishing activities and catches.",
+    "weather forecast": "For the latest weather updates, visit the 'Weather' section on our website.",
+    "popular fish species": "Some popular fish species include Tuna, Salmon, Cod, and Trout. You can find more details in our Fish Guide.",
+    "how to fish": "Fishing requires the right bait, hook, and technique! You can check our fishing guide for beginner-friendly tips.",
+    "fishing regulations": "Fishing regulations vary by location. Always check local laws before fishing to ensure compliance.",
+    "best bait for fishing": "The best bait depends on the fish species! Worms, shrimp, and artificial lures are commonly used.",
+    
+    // New Fish-Related Queries:
+    "largest fish in the ocean": "The largest fish in the ocean is the Whale Shark, which can grow up to 18 meters (60 feet) long!",
+    "smallest fish in the world": "The Paedocypris fish, found in Southeast Asia, is the smallest known fish, measuring just 7.9 mm long!",
+    "most dangerous fish": "The Stonefish is considered the most dangerous fish due to its venomous spines, which can cause severe pain and even death.",
+    "deepest living fish": "The Mariana Snailfish has been found at depths of 8,000 meters in the Mariana Trench, making it one of the deepest-living fish species.",
+    "fastest fish": "The Sailfish is the fastest fish in the ocean, reaching speeds of up to 68 mph (110 km/h).",
+    "best fish for beginners": "Guppies, Bettas, and Goldfish are great for beginner fish keepers. They require minimal care and are very hardy.",
+    "how do fish breathe underwater": "Fish use gills to extract oxygen from water. The water flows over their gills, and oxygen is absorbed into their bloodstream.",
+    "do fish sleep": "Yes, fish do sleep! They enter a restful state where their metabolism slows down, but they don’t close their eyes as they lack eyelids.",
+    "how long do fish live": "Lifespan varies by species. Goldfish can live 10-20 years, while some deep-sea fish can live over 100 years!",
+    "can fish feel pain": "Scientific studies suggest that fish have pain receptors and can experience pain, so ethical fishing practices are important.",
+    "why do fish have scales": "Scales protect fish from injuries and infections while also reducing friction when they swim through water.",
+    "how do fish communicate": "Fish communicate using body language, bioluminescence, and even sounds like grunts and clicks.",
+    "why do some fish glow": "Some deep-sea fish have bioluminescence, which helps them attract prey, communicate, or camouflage from predators.",
+    "what do fish eat": "Fish diets vary widely—herbivores eat algae, carnivores eat smaller fish, and omnivores eat both plant and animal matter.",
+    "how do sharks detect prey": "Sharks use electroreception to detect the electrical signals from their prey, even in complete darkness.",
+    "why do some fish live in freshwater and others in saltwater": "Fish are adapted to different salinities. Freshwater fish cannot handle high salt levels, while saltwater fish need saline environments to survive.",
+    "how do salmon migrate": "Salmon are anadromous, meaning they migrate from freshwater to the ocean and back to freshwater to spawn.",
+    "can fish recognize humans": "Some fish, like cichlids, can recognize their owners and react to their presence!",
+    "most intelligent fish": "The Manta Ray is considered one of the smartest fish, showing problem-solving skills and social behaviors.",
+    "why do fish school together": "Fish school to protect themselves from predators, improve swimming efficiency, and help them find food more easily.",
+    
+        // Fish Identification & Facts
+    "what is the rarest fish in the world": "The rarest fish is the Devil's Hole Pupfish, found only in a single water-filled cave in Nevada, USA.",
+    "what is the most colorful fish": "The Mandarinfish is considered the most colorful fish, featuring bright blue, orange, and green patterns.",
+    "how do I know if a fish is poisonous": "Poisonous fish often have bright colors or spines. Some examples include the Pufferfish and Stonefish.",
+    "what is the biggest freshwater fish": "The Beluga Sturgeon holds the record as the largest freshwater fish, growing up to 20 feet long.",
+    "can fish change color": "Yes! Many fish, like chameleons, change color to camouflage or communicate.",
+    "do fish have bones": "Yes, most fish have bones, but some, like sharks, have cartilage instead.",
+
+// Fishing Techniques & Gear
+    "what is the best time of day to fish": "Early morning and late evening are the best times to fish as fish are more active in cooler water.",
+    "how do I choose the right fishing rod": "Choosing a rod depends on the type of fishing—light rods for small fish and heavier rods for larger species.",
+    "what’s the best bait for bass fishing": "Bass love live bait like worms, minnows, or artificial lures such as crankbaits and jigs.",
+    "how do I catch catfish": "Catfish are attracted to smelly baits like chicken liver, cheese bait, or cut fish.",
+
+// Ocean & Deep-Sea Mysteries
+    "what is the deepest part of the ocean": "The Mariana Trench is the deepest part of the ocean, reaching about 36,000 feet deep.",
+    "are there still undiscovered fish species": "Yes! Scientists estimate that thousands of fish species are yet to be discovered in the deep sea.",
+    "what’s the creepiest deep-sea fish": "The Anglerfish, with its glowing lure and massive jaws, is one of the creepiest deep-sea fish.",
+
+// Aquaculture & Fish Farming
+"what are the best fish for aquaculture": "Tilapia, Catfish, and Salmon are among the best fish for aquaculture due to their fast growth and adaptability.",
+"what is sustainable fish farming": "Sustainable fish farming focuses on responsible breeding, reducing waste, and protecting marine ecosystems.",
+
+// Fun & Weird Fish Facts
+"can fish hear sounds": "Yes! Fish don't have external ears, but they can detect vibrations in the water through their lateral line system.",
+"do fish have emotions": "Studies suggest fish can experience stress, excitement, and even recognize humans over time.",
+"what’s the longest-living fish": "The Greenland Shark is the longest-living fish, with some individuals estimated to be over 400 years old!",
+"can fish recognize humans": "Yes, some fish, like Cichlids, can recognize their owners and react to them.",
+
+// Marine Conservation & Environmental Impact
+"how does overfishing affect the ocean": "Overfishing depletes fish populations, disrupts ecosystems, and threatens food security.",
+"how can I help protect marine life": "You can help by using sustainable seafood, reducing plastic waste, and supporting marine conservation efforts.",
+
+// Fish Behavior & Adaptations
+"why do some fish glow in the dark": "Bioluminescent fish produce light through special cells or symbiotic bacteria, often for camouflage or attracting prey.",
+"can fish survive out of water": "Some fish, like the Lungfish and Mudskipper, can survive out of water for extended periods by breathing air.",
+"how do fish survive in frozen lakes": "Fish survive in frozen lakes by slowing their metabolism and staying in deeper waters where it’s slightly warmer.",
+
+// Edible Fish & Cooking Tips
+"what are the healthiest fish to eat": "Salmon, Mackerel, and Sardines are some of the healthiest fish due to their high Omega-3 content.",
+"how do I clean and fillet a fish": "To clean a fish, remove the scales, gut it, and then use a sharp knife to fillet along the backbone.",
+"which fish should I avoid eating": "Avoid fish high in mercury, such as King Mackerel, Shark, and some types of Tuna."
+};
+      // Match the response with keywords dynamically
+        for (let key in responses) {
+            if (question.includes(key)) {
+                return responses[key];
+            }
+        }
+
+        // Default response if no match is found
+        return "I'm not sure about that, but you can ask in the Community Forum for expert opinions!";
+    }
