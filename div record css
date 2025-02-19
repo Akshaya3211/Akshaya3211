@@ -1,0 +1,260 @@
+/* General Styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f8fb;
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    background-color: #0077b6;
+    color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.nav-links li {
+    display: inline;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: white;
+    font-weight: 600;
+    transition: color 0.3s ease-in-out;
+}
+
+.nav-links a:hover, .nav-links .active {
+    color: #ffcc00;
+}
+
+/* Hero Section */
+.diving-hero {
+    text-align: center;
+    padding: 50px 20px;
+    background: linear-gradient(to right, #0077b6, #0096c7);
+    color: white;
+    border-radius: 0 0 20px 20px;
+}
+
+.diving-hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.diving-hero p {
+    font-size: 1.2rem;
+}
+
+#add-record-btn, #searchBar {
+    margin-top: 15px;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+#add-record-btn {
+    background-color: #ffcc00;
+    color: #333;
+    font-weight: bold;
+    transition: background 0.3s ease-in-out;
+}
+
+#add-record-btn:hover {
+    background-color: #ffaa00;
+}
+
+#searchBar {
+    display: block;
+    width: 80%;
+    margin: 15px auto;
+    padding: 10px;
+    font-size: 1rem;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+}
+
+/* Records Section */
+.records-container {
+    padding: 30px;
+    max-width: 900px;
+    margin: auto;
+}
+
+.records-container h2 {
+    text-align: center;
+    color: #0077b6;
+    margin-bottom: 20px;
+}
+
+#records-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+}
+
+/* Individual Record */
+.record-item {
+    background-color: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+    width: 280px;
+}
+
+.record-item:hover {
+    transform: scale(1.05);
+}
+
+.record-item h3 {
+    margin: 0;
+    font-size: 1.2rem;
+    color: #0077b6;
+}
+
+.record-item p {
+    font-size: 0.9rem;
+    color: #333;
+    margin: 5px 0;
+}
+
+.export-btn {
+    background-color: #0077b6;
+    color: white;
+    padding: 8px 10px;
+    font-size: 0.9rem;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 10px;
+    display: block;
+    width: 100%;
+    transition: background 0.3s ease-in-out;
+}
+
+.export-btn:hover {
+    background-color: #005f8a;
+}
+
+/* Modal */
+.record-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+.modal-content h3 {
+    margin-bottom: 15px;
+    color: #0077b6;
+}
+
+.modal-content label {
+    font-weight: bold;
+    display: block;
+    margin-top: 10px;
+}
+
+.modal-content input, 
+.modal-content textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.modal-content button {
+    background-color: #0077b6;
+    color: white;
+    border: none;
+    padding: 10px;
+    margin-top: 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    width: 100%;
+}
+
+.modal-content button:hover {
+    background-color: #005f8a;
+}
+.modal-content {
+    max-height: 80vh; /* Limits height to 80% of the viewport */
+    overflow-y: auto; /* Enables vertical scrolling */
+  }
+  
+
+/* Close Button */
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #333;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 15px;
+    background-color: #0077b6;
+    color: white;
+    margin-top: 30px;
+    border-radius: 10px 10px 0 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .nav-links {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+    }
+
+    .records-container {
+        padding: 20px;
+    }
+
+    .record-item {
+        width: 100%;
+    }
+}
