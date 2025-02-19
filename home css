@@ -1,0 +1,464 @@
+/* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    background-color: #f8f9fa;
+    color: #333;
+    line-height: 1.6;
+}
+
+header {
+    background-color: #0a3d5f;
+    padding: 20px 0;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.navbar .logo  {
+    width: 50px;
+    color: #eaf7f7;
+}
+
+.navbar .nav-links {
+    list-style-type: none;
+    display: flex;
+}
+
+.navbar .nav-links li {
+    margin: 0 15px;
+}
+
+.navbar .nav-links li a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+/* Hero Section */
+/* Hero Section */
+.hero {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 100px 20px;
+    background: linear-gradient(to right, #00aaff, #004477);
+    color: white;
+    text-align: center;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Hero Content Styling */
+.hero-content {
+    max-width: 900px;
+    margin: 0 auto;
+    z-index: 10;
+    animation: fadeInUp 1.5s ease-out;
+}
+
+.hero-title {
+    font-size: 4rem;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    margin-bottom: 20px;
+    letter-spacing: 3px;
+    line-height: 1.2;
+    text-transform: uppercase;
+    color: white;
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    animation: fadeIn 1.5s ease-out forwards;
+}
+
+.hero-description {
+    font-size: 1.6rem;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    margin-bottom: 30px;
+    line-height: 1.8;
+    opacity: 0;
+    animation: fadeIn 1.5s ease-out 0.3s forwards;
+}
+
+.cta-button {
+    padding: 15px 35px;
+    font-size: 18px;
+    background-color:#001f3f;
+    border: none;
+    color: white;
+    border-radius: 30px;
+    cursor: pointer;
+    font-family: 'Roboto', sans-serif;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    opacity: 0;
+    animation: fadeIn 1.5s ease-out 0.6s forwards;
+}
+
+.cta-button:hover {
+    background-color:#00aaff;
+    transform: scale(1.1);
+}
+
+.hero-image img {
+    width: 100%;
+    height: auto;
+    max-width: 600px;
+    display: block;
+    margin: 0 auto;
+    border-radius: 15px;
+    box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.2);
+    transform: translateY(20px);
+    opacity: 0;
+    animation: fadeIn 1.5s ease-out 0.9s forwards;
+}
+
+/* Keyframe Animations */
+
+
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* Hero Section */
+/* About Section */
+.about {
+    background: linear-gradient(135deg, #e2f0f7, #a7c7d9);
+    background-image: linear-gradient(135deg, rgba(0, 0, 0, 0.05) 1px, transparent 1px),
+                      linear-gradient(225deg, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
+    background-size: 20px 20px;
+    padding: 80px 20px;
+    text-align: center;
+}
+
+
+
+/*.about {
+    background: #f2f9f9;
+    padding: 80px 20px;
+    text-align: center;
+}*/
+
+.about-title {
+    font-size: 3rem;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    margin-bottom: 50px;
+    color: #0a3d5f;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+
+/* About Container */
+.about-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+/* Individual About Cards */
+.about-card {
+    background-color: white;
+    padding: 30px;
+    border-radius: 15px;
+    width: 300px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: left;
+    font-family: 'Roboto', sans-serif;
+}
+
+.about-card h3 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.about-card p {
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+
+/* Hover Effects for About Cards */
+.about-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+}
+
+.about-card button {
+    background:#001f3f;
+    padding: 10px 20px;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.about-card button:hover {
+    background-color:#001f3f;
+    transform: scale(1.05);
+}
+
+/* Animation for Card Fade In */
+.about-card {
+    opacity: 0;
+    animation: fadeIn 1s ease-out forwards;
+}
+
+.about-card:nth-child(1) {
+    animation-delay: 0.3s;
+}
+
+.about-card:nth-child(2) {
+    animation-delay: 0.6s;
+}
+
+.about-card:nth-child(3) {
+    animation-delay: 0.9s;
+}
+
+/* Keyframe for Fade In Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+/* Explore Section Styles */
+.Explore {
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.Explore h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.filter-buttons {
+    margin-bottom: 20px;
+}
+
+.filter-btn {
+    padding: 10px 20px;
+    background-color: #008cba;
+    border: none;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    margin: 5px;
+    border-radius: 5px;
+}
+
+.filter-btn:hover {
+    background-color: #006f8c;
+}
+
+.gallery-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+}
+
+.gallery-item {
+    width: 200px;
+    height: 200px;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.1);
+}
+
+/* Modal Image View */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.modal-content {
+    margin: auto;
+    display: block;
+    max-width: 80%;
+    max-height: 80%;
+}
+
+.modal-close {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 30px;
+    color: rgb(0, 0, 0);
+    cursor: pointer;
+}
+
+
+
+
+/* Customer Reviews */
+.reviews {
+    text-align: center;
+    padding: 50px 40px;
+    background-color: #eaf7f7;
+}
+
+.reviews-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.review-card {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    width: 30%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.review-card img {
+    width: 50px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+/* Cookie Consent Styles */
+.cookie-consent {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #333;
+    color: white;
+    padding: 15px;
+    text-align: center;
+    display: none;
+    z-index: 9999;
+}
+
+.cookie-btn {
+    background-color: #ff6600;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin: 5px;
+    border-radius: 5px;
+}
+
+.cookie-btn:hover {
+    background-color: #cc5200;
+}
+
+/* Guided Tour Tooltip Styles (Intro.js uses its own styles, but we can adjust them if needed) */
+.introjs-tooltip {
+    background-color: #0a3d5f !important;
+    color: white;
+    font-size: 16px;
+    border-radius: 10px;
+}
+
+.introjs-arrow {
+    border-color: #0a3d5f transparent transparent transparent !important;
+}
+
+/* Additional styling for Guided Tour (optional) */
+.introjs-helperLayer {
+    background-color: rgba(0, 0, 0, 0.7) !important;
+}
+
+
+
+
+/* Contact Form */
+.contact {
+    padding: 50px;
+    background-color: #0a3d5f;
+    color: white;
+    text-align: center;
+}
+
+.contact form {
+    max-width: 500px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.contact input, .contact textarea {
+    padding: 10px;
+    width: 100%;
+    border: none;
+    border-radius: 5px;
+}
+
+.contact button {
+    background:#001f3f;
+    padding: 10px;
+    border: none;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 20px;
+    background: #001f3f;
+    color: rgb(255, 255, 255);
+}
