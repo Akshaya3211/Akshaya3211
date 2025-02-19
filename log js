@@ -1,0 +1,40 @@
+function toggleForm() {
+    let signupForm = document.getElementById("signupForm");
+    let loginForm = document.getElementById("loginForm");
+    if (signupForm.style.display === "none") {
+        signupForm.style.display = "block";
+        loginForm.style.display = "none";
+    } else {
+        signupForm.style.display = "none";
+        loginForm.style.display = "block";
+    }
+}
+
+// Sign up function
+function signup() {
+    let user = document.getElementById("signupUser").value;
+    let pass = document.getElementById("signupPass").value;
+    if (user && pass) {
+        // Store the credentials in localStorage
+        localStorage.setItem("user", user);
+        localStorage.setItem("pass", pass);
+        alert("Sign Up successful! Please log in.");
+        toggleForm(); // Switch to login form
+    } else {
+        alert("Please fill in all fields.");
+    }
+}
+
+// Login function
+function login() {
+    let user = document.getElementById("loginUser").value;
+    let pass = document.getElementById("loginPass").value;
+    let storedUser = localStorage.getItem("user");
+    let storedPass = localStorage.getItem("pass");
+    if (user === storedUser && pass === storedPass) {
+        alert("Login successful!");
+        window.location.href = "upload.html"; // Redirect to the upload page
+    } else {
+        alert("Invalid credentials. Please try again.");
+    }
+}
