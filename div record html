@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diving Records | EcoFishID</title>
+    <link rel="stylesheet" href="div.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+</head>
+<body>
+<header>
+    <nav class="navbar">
+        <div class="logo">EcoFishID</div>
+        <ul class="nav-links">
+            <li><a href="/home.html">Home</a></li>
+            <li><a href="/upload.html">Identify</a></li>
+            <li><a href="/explore.html">Explore</a></li>
+            <li><a href="/guide.html">Guide</a></li>
+            <li><a href="/diving-records.html" class="active">Diving Records</a></li>
+            <li><a href="/logbook.html">Logbook</a></li>
+        </ul>
+    </nav>
+</header>
+<section class="diving-hero">
+    <h1>My Diving Records</h1>
+    <p>Keep track of your underwater adventures!</p>
+    <button id="add-record-btn">+ Add New Dive</button>
+    <input type="text" id="searchBar" placeholder="Search records by location...">
+    <button id="exportPdf">Export as PDF</button>
+</section>
+<section class="records-container">
+    <h2>Your Logs</h2>
+    <div id="records-list"></div>
+</section>
+<!-- Modal for Adding Records -->
+<div class="modal-dialog modal-dialog-scrollable">
+    <div class="record-modal" id="recordModal">
+        <div class="modal-content">
+            <span class="close-btn" id="closeModal">&times;</span>
+            <h3>Add Diving Record</h3>
+            <label for="diverName">Diver Name:</label>
+            <input type="text" id="diverName" placeholder="Your Name" required>
+            <label for="diveLocation">Location:</label>
+            <input type="text" id="diveLocation" placeholder="Dive Location" required>
+            <label for="diveDate">Date:</label>
+            <input type="date" id="diveDate" required>
+            <label for="diveDepth">Depth (m):</label>
+            <input type="number" id="diveDepth" placeholder="Depth in meters" required>
+            <label for="waterTemp">Water Temperature (°C):</label>
+            <input type="number" id="waterTemp" placeholder="Temperature" required>
+            <label for="visibility">Visibility (m):</label>
+            <input type="number" id="visibility" placeholder="Visibility in meters" required>
+            <label for="gearUsed">Gear Used:</label>
+            <input type="text" id="gearUsed" placeholder="Gear Used" required>
+            <label for="diveNotes">Notes:</label>
+            <textarea id="diveNotes" placeholder="Describe your experience..." required></textarea>
+            <button id="saveRecord">Save Record</button>
+        </div>
+    </div>
+</div>
+<footer>
+    <p>&copy; 2025 EcoFishID | All Rights Reserved</p>
+</footer>
+<script src="div.js"></script>
+</body>
+</html>
