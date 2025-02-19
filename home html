@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Fishing Website Design</title>
+    <link rel="stylesheet" href="home.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Roboto:wght@400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intro.js@4.2.2/minified/introjs.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/intro.js@4.2.2/minified/intro.min.js"></script>
+
+    <script src="home.js" defer></script>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <h1><bold>EcoFishID</bold></h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="/home.html">Home</a></li>
+                <li><a href="/upload.html">Identify</a></li>
+                <li><a href="/explo.html">Explore</a></li>
+                <li><a href="/div.html">Diving Records</a></li></li>
+                <li><a href="/logbook.html">Logbook</a></li>
+                <li><a href="#about">About</a></li> 
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="/log.html">Login</a></li>
+                <li><a href="community.html">Community</a></li>
+
+
+
+ 
+                
+            </ul>
+        </nav>
+    </header>
+    
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">Welcome to EcoFishID</h1>
+            <p class="hero-description">Your gateway to identify and learn about fish species.</p>
+            <button class="cta-button">Let's get started</button>
+        </div>
+        <div class="hero-image">
+            <img src="images/fish_img1-removebg-preview.png" alt="Fish">
+        </div>
+    </section>
+    
+    
+    <section id = "about" class="about">
+        <h2 class="about-title">About EcoFishID</h2>
+        <div class="about-container">
+            <div class="about-card">
+                <h3>What We Do</h3>
+                <p>At EcoFishID, we provide an intuitive platform to explore the world of fishing. From identifying fish species to helping you find perfect fishing spots, we offer comprehensive tools for anglers and aquaculture enthusiasts alike.</p>
+                <button class="cta-button">Learn More</button>
+            </div>
+            <div class="about-card">
+                <h3>Why EcoFishID?</h3>
+                <p>Our platform stands out by offering accurate species recognition, location-based fishing suggestions, and valuable insights into fish behavior. We leverage AI and data science to enhance your fishing experience.</p>
+                <button class="cta-button">Learn More</button>
+            </div>
+            <div class="about-card">
+                <h3>Our Mission</h3>
+                <p>Our mission is to foster sustainable fishing practices while promoting eco-friendly methods. We aim to create a community of passionate fishermen and environmentalists dedicated to preserving marine life.</p>
+                <button class="cta-button">Learn More</button>
+            </div>
+        </div>
+    </section>
+    <section class="Explore">
+        <h2>EXPLORE</h2>
+        
+        <!-- Filter options -->
+        <div class="filter-buttons">
+            <button class="filter-btn" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="freshwater">Freshwater</button>
+            <button class="filter-btn" data-filter="saltwater">Saltwater</button>
+           
+        </div>
+    
+        <!-- Gallery -->
+        <div class="gallery-grid">
+            <div class="gallery-item freshwater">
+               <a href ="explo.html"><img src="/images/f1.jpg" alt="Fish 1"></a>
+            </div>
+            <div class="gallery-item saltwater">
+                <a href="explo.html"><img src="images/sw1.jpg" alt="Fish 2"></a>
+            </div>
+                       <div class="gallery-item freshwater">
+                        <a href="explo.html"><img src="/images/f2.jpg" alt="Fish 4"></a>
+            </div>
+            <div class="gallery-item saltwater">
+                <a href="explo.html"><img src="images/sw2.jpg" alt="Fish 5"></a>
+            </div>
+           
+        </div>
+    </section>
+     
+    
+   
+    <!-- Customer Reviews Section -->
+    <section class="reviews">
+        <h1>CLIENT REVIEWS</h1>
+        <p>Read what our customers have to say about us.</p>
+        <div class="reviews-container">
+            <div class="review-card">
+                <img src="/images/woman-user-circle-black-icon-removebg-preview.png" alt="User">
+                <h3>Sophie Bernard</h3>
+                <p>⭐⭐⭐⭐⭐</p>
+                <p>Amazing experience!</p>
+            </div>
+            <div class="review-card">
+                <img src="/images/man-user-circle-black-icon.png" alt="User">
+                <h3>Gabriel Vincent</h3>
+                <p>⭐⭐⭐⭐⭐</p>
+                <p>Highly recommend it!</p>
+            </div>
+            <div class="review-card">
+                <img src="/images/woman-user-circle-black-icon-removebg-preview.png" alt="User">
+                <h3>Christine Moreau</h3>
+                <p>⭐⭐⭐⭐⭐</p>
+                <p>Excellent quality and very friendly platform.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cookie Consent -->
+<div id="cookieConsent" class="cookie-consent">
+    <p>We use cookies to enhance your experience on our website. By continuing to use this website, you consent to our use of cookies.</p>
+    <button id="acceptCookies" class="cookie-btn">Accept All Cookies</button>
+    <button id="rejectCookies" class="cookie-btn">Reject Cookies</button>
+</div>
+
+<!-- Guided Tour Start (Will be triggered automatically) -->
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Check if cookies are accepted
+        if (!localStorage.getItem('cookiesAccepted')) {
+            // Show cookie consent
+            document.getElementById('cookieConsent').style.display = 'block';
+        } else {
+            // Start the guided tour after cookies are accepted
+            startTour();
+        }
+
+        // Accept cookies
+        document.getElementById('acceptCookies').addEventListener('click', function() {
+            localStorage.setItem('cookiesAccepted', 'true');
+            document.getElementById('cookieConsent').style.display = 'none';
+            startTour(); // Start the tour after accepting cookies
+        });
+
+        // Reject cookies
+        document.getElementById('rejectCookies').addEventListener('click', function() {
+            document.getElementById('cookieConsent').style.display = 'none';
+        });
+    });
+
+    // Function to start the guided tour
+    function startTour() {
+        introJs().start();
+    }
+</script>
+
+
+    <!-- Contact Form Section -->
+    <section id = "contact"class="contact">
+        <h2>Contact Us</h2>
+        <form id="contactForm">
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="email" name="email" placeholder="Your Email" required>
+            <input type="text" name="phone" placeholder="Your Phone" required>
+            <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+            <button type="submit" class="cta-button">Send Message</button>
+        </form>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025   ecofishid@gmail.com All rights reserved.</p>
+    </footer>
+</body>
+</html>
+
+
+
