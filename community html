@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community & Engagement | EcoFishID</title>
+    <link rel="stylesheet" href="community.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Roboto:wght@400&display=swap" rel="stylesheet">
+    <script src="community.js" defer></script>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <h1>EcoFishID</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="home.html">Home</a></li>
+                <li><a href="upload.html">Identify</a></li>
+                <li><a href="explo.html">Explore</a></li>
+                <li><a href="div.html">Diving Records</a></li>
+                <li><a href="logbook.html">Logbook</a></li>
+                <li><a href="community.html">Community</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="log.html">Login</a></li>
+                
+            </ul>
+        </nav>
+    </header>
+
+    <section class="forum">
+        <h2>Community Forum</h2>
+        <p>Join the discussion and share your fishing experiences!</p>
+        <button class="cta-button" id="createPostBtn">Create Post</button>
+        <div class="forum-container" id="forumContainer">
+            <div class="discussion-post">
+                <h3>Best fishing spots this season?</h3>
+                <p>Posted by: Alex Fisher</p>
+                 <button class="join-discussion">Join Discussion</button>
+            
+                <!-- Comment Section (Initially Hidden) -->
+                <div class="comment-section" style="display: none;">
+                    <h4>Comments</h4>
+                    <div class="comments-list">
+                        <!-- Existing comments will appear here -->
+                    </div>
+                    <textarea class="comment-input" placeholder="Add a comment..."></textarea>
+                    <button class="add-comment">Post Comment</button>
+                </div>
+            </div>
+            <div class="discussion-post">
+                <h3>Tips for sustainable fishing</h3>
+                <p>Posted by: Marina Green</p>
+                
+                <button class="join-discussion">Join Discussion</button>
+            
+                <!-- Comment Section (Initially Hidden) -->
+                <div class="comment-section" style="display: none;">
+                    <h4>Comments</h4>
+                    <div class="comments-list">
+                        <!-- Existing comments will appear here -->
+                    </div>
+                    <textarea class="comment-input" placeholder="Add a comment..."></textarea>
+                    <button class="add-comment">Post Comment</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="chatbot">
+        <h2>Need Help?</h2>
+        <p>Chat with our AI bot for instant assistance!</p>
+        <button class="cta-button" id="chatNowBtn">Chat Now</button>
+        <div class="chatbox" id="chatBox">
+            <div class="chat-header">
+                <span>EcoFishID Chatbot</span>
+                <button id="closeChat">X</button>
+            </div>
+            <div class="chat-body" id="chatBody">
+                <p>👋 Hello! How can I assist you today?</p>
+            </div>
+            <input type="text" id="chatInput" placeholder="Type your message...">
+            <button id="sendChat">Send</button>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 ecofishid@gmail.com All rights reserved.</p>
+    </footer>
+</body>
+</html>
