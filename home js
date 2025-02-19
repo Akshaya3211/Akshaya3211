@@ -1,0 +1,50 @@
+document.addEventListener("DOMContentLoaded", function () {
+    document.getElementById("contactForm").addEventListener("submit", function (event) {
+        event.preventDefault();
+        alert("Thank you for reaching out! We'll get back to you soon.");
+        this.reset();
+    });
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+    const filterButtons = document.querySelectorAll(".filter-btn");
+    const galleryItems = document.querySelectorAll(".gallery-item");
+    const modal = document.createElement("div");
+    const modalContent = document.createElement("img");
+    const closeButton = document.createElement("span");
+
+    // Add modal close button
+    closeButton.innerHTML = "&times;";
+    closeButton.classList.add("modal-close");
+    modal.appendChild(modalContent);
+    modal.appendChild(closeButton);
+    document.body.appendChild(modal);
+
+    // Modal image click to view larger image
+    galleryItems.forEach(item => {
+        item.addEventListener("click", function () {
+            const src = item.querySelector("img").src;
+            modalContent.src = src;
+            modal.style.display = "block";
+        });
+    });
+
+    // Close modal
+    closeButton.addEventListener("click", () => {
+        modal.style.display = "none";
+    });
+
+    // Filter functionality
+    filterButtons.forEach(button => {
+        button.addEventListener("click", function () {
+            const filter = button.getAttribute("data-filter");
+            galleryItems.forEach(item => {
+                if (filter === "all" || item.classList.contains(filter)) {
+                    item.style.display = "block";
+                } else {
+                    item.style.display = "none";
+                }
+            });
+        });
+    });
+});
