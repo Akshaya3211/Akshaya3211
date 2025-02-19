@@ -1,0 +1,127 @@
+document.addEventListener("DOMContentLoaded", function () {
+    const addRecordBtn = document.getElementById("add-record-btn");
+    const modal = document.getElementById("recordModal");
+    const closeModalBtn = document.getElementById("closeModal");
+    const saveRecordBtn = document.getElementById("saveRecord");
+    const recordsList = document.getElementById("records-list");
+    const searchBar = document.getElementById("searchBar");
+    const diverFilter = document.getElementById("diverFilter");
+
+    recordsList.style.maxHeight = "400px";
+    recordsList.style.overflowY = "auto";
+
+    addRecordBtn.addEventListener("click", () => {
+        modal.style.display = "block";
+    });
+
+    closeModalBtn.addEventListener("click", () => {
+        modal.style.display = "none";
+    });
+
+    window.addEventListener("click", (event) => {
+        if (event.target === modal) {
+            modal.style.display = "none";
+        }
+    });
+
+    saveRecordBtn.addEventListener("click", () => {
+        const diverName = document.getElementById("diverName").value;
+        const diveLocation = document.getElementById("diveLocation").value;
+        const diveDate = document.getElementById("diveDate").value;
+        const diveDepth = document.getElementById("diveDepth").value;
+        const diveNotes = document.getElementById("diveNotes").value;
+        const waterTemp = document.getElementById("waterTemp").value;
+        const visibility = document.getElementById("visibility").value;
+        const gearUsed = document.getElementById("gearUsed").value;
+
+        if (!diverName || !diveLocation || !diveDate || !diveDepth || !diveNotes || !waterTemp || !visibility || !gearUsed) {
+            Swal.fire("Error", "Please fill in all fields!", "error");
+            return;
+        }
+
+        const record = {
+            diverName,
+            diveLocation,
+            diveDate,
+            diveDepth,
+            diveNotes,
+            waterTemp,
+            visibility,
+            gearUsed
+        };
+
+        addRecordToUI(record);
+        saveRecordToLocalStorage(record);
+
+        Swal.fire("Success", "Diving Record Added!", "success");
+        modal.style.display = "none";
+    });
+
+    function addRecordToUI(record) {
+        const recordItem = document.createElement("div");
+        recordItem.classList.add("record-item");
+
+        recordItem.innerHTML = `
+            <h3>${record.diveLocation} (${record.diveDate})</h3>
+            <p><strong>Diver:</strong> ${record.diverName}</p>
+            <p><strong>Depth:</strong> ${record.diveDepth}m</p>
+            <p><strong>Water Temperature:</strong> ${record.waterTemp}°C</p>
+            <p><strong>Visibility:</strong> ${record.visibility}m</p>
+            <p><strong>Gear Used:</strong> ${record.gearUsed}</p>
+            <p><strong>Notes:</strong> ${record.diveNotes}</p>
+            <button class="export-btn">Export to PDF</button>
+        `;
+
+        recordItem.querySelector(".export-btn").addEventListener("click", () => exportToPDF(record));
+        recordsList.appendChild(recordItem);
+    }
+
+    function saveRecordToLocalStorage(record) {
+        let records = JSON.parse(localStorage.getItem("divingRecords")) || [];
+        records.push(record);
+        localStorage.setItem("divingRecords", JSON.stringify(records));
+    }
+
+    function loadRecords() {
+        let records = JSON.parse(localStorage.getItem("divingRecords")) || [];
+        records.forEach(addRecordToUI);
+    }
+
+    function exportToPDF(record) {
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF();
+
+        doc.setFont("helvetica", "bold");
+        doc.text("Diving Record", 80, 10);
+        doc.setFont("helvetica", "normal");
+        doc.text(`Diver: ${record.diverName}`, 10, 20);
+        doc.text(`Location: ${record.diveLocation}`, 10, 30);
+        doc.text(`Date: ${record.diveDate}`, 10, 40);
+        doc.text(`Depth: ${record.diveDepth}m`, 10, 50);
+        doc.text(`Water Temperature: ${record.waterTemp}°C`, 10, 60);
+        doc.text(`Visibility: ${record.visibility}m`, 10, 70);
+        doc.text(`Gear Used: ${record.gearUsed}`, 10, 80);
+        doc.text(`Notes: ${record.diveNotes}`, 10, 90);
+
+        doc.save(`${record.diveLocation}-${record.diveDate}.pdf`);
+        Swal.fire("Exported!", "Diving record saved as PDF.", "success");
+    }
+
+    searchBar.addEventListener("input", function () {
+        const filter = searchBar.value.toLowerCase();
+        document.querySelectorAll(".record-item").forEach(item => {
+            const location = item.querySelector("h3").textContent.toLowerCase();
+            item.style.display = location.includes(filter) ? "block" : "none";
+        });
+    });
+
+    diverFilter.addEventListener("input", function () {
+        const filter = diverFilter.value.toLowerCase();
+        document.querySelectorAll(".record-item").forEach(item => {
+            const diver = item.querySelector("p").textContent.toLowerCase();
+            item.style.display = diver.includes(filter) ? "block" : "none";
+        });
+    });
+
+    loadRecords();
+});
