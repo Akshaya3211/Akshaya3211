@@ -1,0 +1,37 @@
+document.addEventListener("DOMContentLoaded", () => {
+    const logList = document.getElementById("logList");
+    const searchBar = document.getElementById("searchBar");
+
+    function loadLogs() {
+        logList.innerHTML = "";
+        const logs = JSON.parse(localStorage.getItem("diveLogs")) || [];
+
+        logs.forEach(log => {
+            const li = document.createElement("li");
+            li.innerHTML = `
+                <strong>${log.location}</strong> - ${log.depth}m, ${log.duration} min (${log.date})
+                <p>${log.notes}</p>
+            `;
+            logList.appendChild(li);
+        });
+    }
+
+    searchBar.addEventListener("input", (event) => {
+        const query = event.target.value.toLowerCase();
+        const logs = JSON.parse(localStorage.getItem("diveLogs")) || [];
+        logList.innerHTML = "";
+
+        logs
+            .filter(log => log.location.toLowerCase().includes(query))
+            .forEach(log => {
+                const li = document.createElement("li");
+                li.innerHTML = `
+                    <strong>${log.location}</strong> - ${log.depth}m, ${log.duration} min (${log.date})
+                    <p>${log.notes}</p>
+                `;
+                logList.appendChild(li);
+            });
+    });
+
+    loadLogs();
+});
