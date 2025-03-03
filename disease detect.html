@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoFishID - Upload or Capture Image</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Floating Water Ripple -->
+    <div class="water-ripple"></div>
+
+    <!-- Animated Floating Bubbles -->
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+
+    <!-- Upload Box -->
+    <div class="container">
+        <h2>Upload or Capture Image</h2>
+
+       
+
+        <!-- Disease Detection -->
+        <div class="upload-section">
+            <h3>Fish Disease Detection</h3>
+            <input type="file" id="diseaseFileInput" accept="image/*">
+            <button onclick="uploadDiseaseImage()">Upload</button>
+            <button onclick="startDiseaseCamera()">Capture</button>
+
+            <video id="diseaseVideo" autoplay style="display:none;"></video>
+            <button id="diseaseCaptureBtn" onclick="captureDiseaseImage()" style="display:none;">Capture Image</button>
+            <canvas id="diseaseCanvas" style="display:none;"></canvas>
+        </div>
+    </div>
+    <script src="upload1.js"></script>
+   </body>
+</html>
