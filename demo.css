@@ -1,0 +1,51 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #87CEEB;
+}
+
+/* Upload Section */
+.container {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 50%;
+    margin: auto;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    margin-top: 50px;
+}
+
+/* Buttons */
+button {
+    background-color: #007BFF;
+    color: white;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    margin: 5px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Camera Preview */
+.camera-preview {
+    width: 300px;
+    height: 200px;
+    margin-top: 10px;
+    display: none;
+    border: 2px solid #007BFF;
+    border-radius: 5px;
+}
+
+/* Image Preview */
+.preview-img {
+    width: 250px;
+    height: auto;
+    margin-top: 10px;
+    display: none;
+    border: 2px solid #007BFF;
+    border-radius: 5px;
+}
