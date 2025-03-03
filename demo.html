@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoFishID - Upload or Capture Image</title>
+    <link rel="stylesheet" href="demo.css">
+</head>
+<body>
+
+    <div class="container">
+        <h2>Upload or Capture Image</h2>
+
+        <!-- Fish Species Identification -->
+        <div class="upload-section">
+            <h3>Fish Species Identification</h3>
+            <input type="file" id="speciesFileInput" accept="image/*" onchange="previewImage('species')">
+            <button onclick="startCamera('species')">Capture</button>
+            <video id="speciesVideo" autoplay class="camera-preview"></video>
+            <button id="speciesCaptureBtn" onclick="captureAndUpload('species')">Capture & Upload</button>
+            <canvas id="speciesCanvas" style="display: none;"></canvas>
+            <img id="speciesPreview" class="preview-img">
+        </div>
+
+        <!-- Fish Disease Detection -->
+        <div class="upload-section">
+            <h3>Fish Disease Detection</h3>
+            <input type="file" id="diseaseFileInput" accept="image/*" onchange="previewImage('disease')">
+            <button onclick="startCamera('disease')">Capture</button>
+            <video id="diseaseVideo" autoplay class="camera-preview"></video>
+            <button id="diseaseCaptureBtn" onclick="captureAndUpload('disease')">Capture & Upload</button>
+            <canvas id="diseaseCanvas" style="display: none;"></canvas>
+            <img id="diseasePreview" class="preview-img">
+        </div>
+    </div>
+
+    <script>
+        function previewImage(type) {
+            let fileInput = document.getElementById(`${type}FileInput`);
+            let preview = document.getElementById(`${type}Preview`);
+            if (fileInput.files.length > 0) {
+                let file = fileInput.files[0];
+                let reader = new FileReader();
+                reader.onload = function (e) {
+                    preview.src = e.target.result;
+                    preview.style.display = "block";
+                };
+                reader.readAsDataURL(file);
+                alert(`${type.charAt(0).toUpperCase() + type.slice(1)} image uploaded successfully!`);
+            }
+        }
+
+        function startCamera(type) {
+            let video = document.getElementById(`${type}Video`);
+            let captureBtn = document.getElementById(`${type}CaptureBtn`);
+            navigator.mediaDevices.getUserMedia({ video: true })
+                .then(stream => {
+                    video.style.display = "block";
+                    captureBtn.style.display = "block";
+                    video.srcObject = stream;
+                })
+                .catch(err => {
+                    console.error("Error: ", err);
+                    alert("Camera access denied or not available.");
+                });
+        }
+
+        function captureAndUpload(type) {
+            let video = document.getElementById(`${type}Video`);
+            let canvas = document.getElementById(`${type}Canvas`);
+            let preview = document.getElementById(`${type}Preview`);
+            let context = canvas.getContext("2d");
+
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+            context.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+            let imageData = canvas.toDataURL("image/png");
+            preview.src = imageData;
+            preview.style.display = "block";
+
+            // Simulating file upload
+            let blob = dataURItoBlob(imageData);
+            let file = new File([blob], `${type}_captured.png`, { type: "image/png" });
+
+            // Creating a new FileList
+            let dataTransfer = new DataTransfer();
+            dataTransfer.items.add(file);
+            document.getElementById(`${type}FileInput`).files = dataTransfer.files;
+
+            alert(`${type.charAt(0).toUpperCase() + type.slice(1)} image captured and uploaded successfully!`);
+        }
+
+        function dataURItoBlob(dataURI) {
+            let byteString = atob(dataURI.split(',')[1]);
+            let mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
+            let arrayBuffer = new ArrayBuffer(byteString.length);
+            let uint8Array = new Uint8Array(arrayBuffer);
+            for (let i = 0; i < byteString.length; i++) {
+                uint8Array[i] = byteString.charCodeAt(i);
+            }
+            return new Blob([uint8Array], { type: mimeString });
+        }
+    </script>
+
+</body>
+</html>
