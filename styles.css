@@ -1,7 +1,7 @@
 /* General Styles */
 body {
     font-family: 'Poppins', sans-serif;
-    background: radial-gradient(circle at bottom, #003366, #000428); /* Deep Ocean Theme */
+    background: radial-gradient(circle at bottom,#00aaff, #6674f1); /* Deep Ocean Theme */
     margin: 0;
     padding: 0;
     height: 100vh;
