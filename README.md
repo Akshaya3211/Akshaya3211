@@ -9,7 +9,7 @@
 
 - 🌱 I’m currently learning **DEEP LEARNING**
 
-- 👯 I’m looking to collaborate on **ECOFISHID**
+- 👯 I’m looking to collaborate on **ECOFISHID A collaborative group project**
 
 - 👨‍💻 All of my projects are available at [https://github.com/Akshaya3211](https://github.com/Akshaya3211)
 
